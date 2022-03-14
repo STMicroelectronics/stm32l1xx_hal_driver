@@ -768,9 +768,9 @@ HAL_StatusTypeDef HAL_IRDA_UnRegisterCallback(IRDA_HandleTypeDef *hirda, HAL_IRD
   * @param Timeout Specify timeout value.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size, uint32_t Timeout)
+HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size, uint32_t Timeout)
 {
-  uint16_t *tmp;
+  const uint16_t *tmp;
   uint32_t tickstart = 0U;
 
   /* Check that a Tx process is not already ongoing */
@@ -801,7 +801,7 @@ HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, uint8_t *pData, u
         {
           return HAL_TIMEOUT;
         }
-        tmp = (uint16_t *) pData;
+        tmp = (const uint16_t *) pData;
         hirda->Instance->DR = (*tmp & (uint16_t)0x01FF);
         if (hirda->Init.Parity == IRDA_PARITY_NONE)
         {
@@ -943,7 +943,7 @@ HAL_StatusTypeDef HAL_IRDA_Receive(IRDA_HandleTypeDef *hirda, uint8_t *pData, ui
   * @param Size  Amount of data elements (u8 or u16) to be sent.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size)
+HAL_StatusTypeDef HAL_IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size)
 {
   /* Check that a Tx process is not already ongoing */
   if (hirda->gState == HAL_IRDA_STATE_READY)
@@ -1036,9 +1036,9 @@ HAL_StatusTypeDef HAL_IRDA_Receive_IT(IRDA_HandleTypeDef *hirda, uint8_t *pData,
   * @param Size  Amount of data elements (u8 or u16) to be sent.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size)
+HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size)
 {
-  uint32_t *tmp;
+  const uint32_t *tmp;
 
   /* Check that a Tx process is not already ongoing */
   if (hirda->gState == HAL_IRDA_STATE_READY)
@@ -1071,8 +1071,8 @@ HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, uint8_t *pDat
     hirda->hdmatx->XferAbortCallback = NULL;
 
     /* Enable the IRDA transmit DMA channel */
-    tmp = (uint32_t *)&pData;
-    HAL_DMA_Start_IT(hirda->hdmatx, *(uint32_t *)tmp, (uint32_t)&hirda->Instance->DR, Size);
+    tmp = (const uint32_t *)&pData;
+    HAL_DMA_Start_IT(hirda->hdmatx, *(const uint32_t *)tmp, (uint32_t)&hirda->Instance->DR, Size);
 
     /* Clear the TC flag in the SR register by writing 0 to it */
     __HAL_IRDA_CLEAR_FLAG(hirda, IRDA_FLAG_TC);
@@ -2453,14 +2453,14 @@ static void IRDA_DMARxOnlyAbortCallback(DMA_HandleTypeDef *hdma)
  */
 static HAL_StatusTypeDef IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda)
 {
-  uint16_t *tmp;
+  const uint16_t *tmp;
 
   /* Check that a Tx process is ongoing */
   if (hirda->gState == HAL_IRDA_STATE_BUSY_TX)
   {
     if (hirda->Init.WordLength == IRDA_WORDLENGTH_9B)
     {
-      tmp = (uint16_t *) hirda->pTxBuffPtr;
+      tmp = (const uint16_t *) hirda->pTxBuffPtr;
       hirda->Instance->DR = (uint16_t)(*tmp & (uint16_t)0x01FF);
       if (hirda->Init.Parity == IRDA_PARITY_NONE)
       {
