@@ -2917,7 +2917,7 @@ HAL_StatusTypeDef HAL_HalfDuplex_EnableReceiver(UART_HandleTypeDef *huart)
   *                the configuration information for the specified UART module.
   * @retval HAL state
   */
-HAL_UART_StateTypeDef HAL_UART_GetState(UART_HandleTypeDef *huart)
+HAL_UART_StateTypeDef HAL_UART_GetState(const UART_HandleTypeDef *huart)
 {
   uint32_t temp1 = 0x00U, temp2 = 0x00U;
   temp1 = huart->gState;
@@ -2932,7 +2932,7 @@ HAL_UART_StateTypeDef HAL_UART_GetState(UART_HandleTypeDef *huart)
   *               the configuration information for the specified UART.
   * @retval UART Error Code
   */
-uint32_t HAL_UART_GetError(UART_HandleTypeDef *huart)
+uint32_t HAL_UART_GetError(const UART_HandleTypeDef *huart)
 {
   return huart->ErrorCode;
 }
@@ -3523,7 +3523,7 @@ static HAL_StatusTypeDef UART_Transmit_IT(UART_HandleTypeDef *huart)
 
     if (--huart->TxXferCount == 0U)
     {
-      /* Disable the UART Transmit Complete Interrupt */
+      /* Disable the UART Transmit Data Register Empty Interrupt */
       __HAL_UART_DISABLE_IT(huart, UART_IT_TXE);
 
       /* Enable the UART Transmit Complete Interrupt */
