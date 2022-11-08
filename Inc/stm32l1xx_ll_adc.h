@@ -813,21 +813,35 @@ typedef struct
   * @{
   */
 #define LL_ADC_REG_SEQ_SCAN_DISABLE        0x00000000U                                                 /*!< ADC group regular sequencer disable (equivalent to sequencer of 1 rank: ADC conversion on only 1 channel) */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_2RANKS  (                                             ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 2 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_3RANKS  (                              ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 3 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_4RANKS  (                              ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 4 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_5RANKS  (               ADC_SQR1_L_2                              ) /*!< ADC group regular sequencer enable with 5 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_6RANKS  (               ADC_SQR1_L_2                | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 6 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_7RANKS  (               ADC_SQR1_L_2 | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 7 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_8RANKS  (               ADC_SQR1_L_2 | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 8 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_9RANKS  (ADC_SQR1_L_3                                             ) /*!< ADC group regular sequencer enable with 9 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_10RANKS (ADC_SQR1_L_3                               | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 10 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_11RANKS (ADC_SQR1_L_3                | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 11 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_12RANKS (ADC_SQR1_L_3                | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 12 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_13RANKS (ADC_SQR1_L_3 | ADC_SQR1_L_2                              ) /*!< ADC group regular sequencer enable with 13 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_14RANKS (ADC_SQR1_L_3 | ADC_SQR1_L_2                | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 14 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_15RANKS (ADC_SQR1_L_3 | ADC_SQR1_L_2 | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 15 ranks in the sequence */
-#define LL_ADC_REG_SEQ_SCAN_ENABLE_16RANKS (ADC_SQR1_L_3 | ADC_SQR1_L_2 | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 16 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_2RANKS  (                                                            ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 2 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_3RANKS  (                                             ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 3 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_4RANKS  (                                             ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 4 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_5RANKS  (                              ADC_SQR1_L_2                              ) /*!< ADC group regular sequencer enable with 5 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_6RANKS  (                              ADC_SQR1_L_2                | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 6 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_7RANKS  (                              ADC_SQR1_L_2 | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 7 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_8RANKS  (                              ADC_SQR1_L_2 | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 8 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_9RANKS  (               ADC_SQR1_L_3                                             ) /*!< ADC group regular sequencer enable with 9 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_10RANKS (               ADC_SQR1_L_3                               | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 10 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_11RANKS (               ADC_SQR1_L_3                | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 11 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_12RANKS (               ADC_SQR1_L_3                | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 12 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_13RANKS (               ADC_SQR1_L_3 | ADC_SQR1_L_2                              ) /*!< ADC group regular sequencer enable with 13 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_14RANKS (               ADC_SQR1_L_3 | ADC_SQR1_L_2                | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 14 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_15RANKS (               ADC_SQR1_L_3 | ADC_SQR1_L_2 | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 15 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_16RANKS (               ADC_SQR1_L_3 | ADC_SQR1_L_2 | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 16 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_17RANKS (ADC_SQR1_L_4                                                            ) /*!< ADC group regular sequencer enable with 17 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_18RANKS (ADC_SQR1_L_4                                              | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 18 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_19RANKS (ADC_SQR1_L_4                               | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 19 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_20RANKS (ADC_SQR1_L_4                               | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 20 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_21RANKS (ADC_SQR1_L_4                | ADC_SQR1_L_2                              ) /*!< ADC group regular sequencer enable with 21 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_22RANKS (ADC_SQR1_L_4                | ADC_SQR1_L_2                | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 22 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_23RANKS (ADC_SQR1_L_4                | ADC_SQR1_L_2 | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 23 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_24RANKS (ADC_SQR1_L_4                | ADC_SQR1_L_2 | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 24 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_25RANKS (ADC_SQR1_L_4 | ADC_SQR1_L_3                                             ) /*!< ADC group regular sequencer enable with 25 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_26RANKS (ADC_SQR1_L_4 | ADC_SQR1_L_3                               | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 26 ranks in the sequence */
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_27RANKS (ADC_SQR1_L_4 | ADC_SQR1_L_3                | ADC_SQR1_L_1               ) /*!< ADC group regular sequencer enable with 27 ranks in the sequence */
+#if defined (STM32L100xC) || defined (STM32L151xC) || defined (STM32L152xC) || defined (STM32L162xC) || defined (STM32L151xCA) || defined (STM32L151xD) || defined (STM32L152xCA) || defined (STM32L152xD) || defined (STM32L162xCA) || defined (STM32L162xD) || defined (STM32L151xE)  || defined (STM32L151xDX) || defined (STM32L152xE) || defined (STM32L152xDX) || defined (STM32L162xE)  || defined (STM32L162xDX)
+#define LL_ADC_REG_SEQ_SCAN_ENABLE_28RANKS (ADC_SQR1_L_4 | ADC_SQR1_L_3                | ADC_SQR1_L_1 | ADC_SQR1_L_0) /*!< ADC group regular sequencer enable with 28 ranks in the sequence */
+#endif
 /**
   * @}
   */
@@ -2731,6 +2745,20 @@ __STATIC_INLINE uint32_t LL_ADC_REG_GetTriggerEdge(ADC_TypeDef *ADCx)
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_14RANKS
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_15RANKS
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_16RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_17RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_18ANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_19RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_20RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_21RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_22RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_23RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_24RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_25RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_26RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_27RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_28RANKS (1)
+  *         
+  *         (1) On STM32L1, parameter not available on all devices: only on STM32L1 Cat.3, Cat.4 and Cat.5.
   * @retval None
   */
 __STATIC_INLINE void LL_ADC_REG_SetSequencerLength(ADC_TypeDef *ADCx, uint32_t SequencerNbRanks)
@@ -2792,6 +2820,20 @@ __STATIC_INLINE void LL_ADC_REG_SetSequencerLength(ADC_TypeDef *ADCx, uint32_t S
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_14RANKS
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_15RANKS
   *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_16RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_17RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_18ANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_19RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_20RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_21RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_22RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_23RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_24RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_25RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_26RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_27RANKS
+  *         @arg @ref LL_ADC_REG_SEQ_SCAN_ENABLE_28RANKS (1)
+  *         
+  *         (1) On STM32L1, parameter not available on all devices: only on STM32L1 Cat.3, Cat.4 and Cat.5.
   */
 __STATIC_INLINE uint32_t LL_ADC_REG_GetSequencerLength(ADC_TypeDef *ADCx)
 {
