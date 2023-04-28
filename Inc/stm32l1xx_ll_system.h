@@ -3,6 +3,18 @@
   * @file    stm32l1xx_ll_system.h
   * @author  MCD Application Team
   * @brief   Header file of SYSTEM LL module.
+  *
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
   @verbatim
   ==============================================================================
                      ##### How to use this driver #####
@@ -16,16 +28,6 @@
       (+) Access to Routing Interfaces registers
 
   @endverbatim
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
   ******************************************************************************
   */
 
@@ -1313,7 +1315,7 @@ __STATIC_INLINE void LL_RI_OpenIOSwitchNotLinkedToADC(uint32_t IOSwitch)
 }
 
 /**
-  * @brief  Enable Hysteresis of the input schmitt triger of the port X
+  * @brief  Enable Hysteresis of the input schmitt trigger of the port X
   * @rmtoll RI_HYSCR1    PA            LL_RI_EnableHysteresis\n
   *         RI_HYSCR1    PB            LL_RI_EnableHysteresis\n
   *         RI_HYSCR1    PC            LL_RI_EnableHysteresis\n
@@ -1379,7 +1381,7 @@ __STATIC_INLINE void LL_RI_EnableHysteresis(uint32_t Port, uint32_t Pin)
 }
 
 /**
-  * @brief  Disable Hysteresis of the input schmitt triger of the port X
+  * @brief  Disable Hysteresis of the input schmitt trigger of the port X
   * @rmtoll RI_HYSCR1    PA            LL_RI_DisableHysteresis\n
   *         RI_HYSCR1    PB            LL_RI_DisableHysteresis\n
   *         RI_HYSCR1    PC            LL_RI_DisableHysteresis\n
@@ -2001,3 +2003,5 @@ __STATIC_INLINE void LL_FLASH_DisableSleepPowerDown(void)
 #endif
 
 #endif /* __STM32L1xx_LL_SYSTEM_H */
+
+

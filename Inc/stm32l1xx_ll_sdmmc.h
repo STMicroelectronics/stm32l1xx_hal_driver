@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2016 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -14,7 +14,7 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */
+  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32L1xx_LL_SDMMC_H
@@ -1058,8 +1058,14 @@ uint32_t          SDIO_GetFIFOCount(SDIO_TypeDef *SDIOx);
 
 /* SDMMC Cards mode management functions */
 HAL_StatusTypeDef SDIO_SetSDMMCReadWaitMode(SDIO_TypeDef *SDIOx, uint32_t SDIO_ReadWaitMode);
+/**
+  * @}
+  */
 
 /* SDMMC Commands management functions */
+/** @addtogroup HAL_SDMMC_LL_Group4
+  * @{
+  */
 uint32_t SDMMC_CmdBlockLength(SDIO_TypeDef *SDIOx, uint32_t BlockSize);
 uint32_t SDMMC_CmdReadSingleBlock(SDIO_TypeDef *SDIOx, uint32_t ReadAdd);
 uint32_t SDMMC_CmdReadMultiBlock(SDIO_TypeDef *SDIOx, uint32_t ReadAdd);
@@ -1080,13 +1086,26 @@ uint32_t SDMMC_CmdBusWidth(SDIO_TypeDef *SDIOx, uint32_t BusWidth);
 uint32_t SDMMC_CmdSendSCR(SDIO_TypeDef *SDIOx);
 uint32_t SDMMC_CmdSendCID(SDIO_TypeDef *SDIOx);
 uint32_t SDMMC_CmdSendCSD(SDIO_TypeDef *SDIOx, uint32_t Argument);
-uint32_t SDMMC_CmdSendEXTCSD(SDIO_TypeDef *SDIOx, uint32_t Argument);
 uint32_t SDMMC_CmdSetRelAdd(SDIO_TypeDef *SDIOx, uint16_t *pRCA);
+uint32_t SDMMC_CmdSetRelAddMmc(SDIO_TypeDef *SDIOx, uint16_t RCA);
 uint32_t SDMMC_CmdSendStatus(SDIO_TypeDef *SDIOx, uint32_t Argument);
 uint32_t SDMMC_CmdStatusRegister(SDIO_TypeDef *SDIOx);
 uint32_t SDMMC_CmdOpCondition(SDIO_TypeDef *SDIOx, uint32_t Argument);
 uint32_t SDMMC_CmdSwitch(SDIO_TypeDef *SDIOx, uint32_t Argument);
+uint32_t SDMMC_CmdSendEXTCSD(SDIO_TypeDef *SDIOx, uint32_t Argument);
+/**
+  * @}
+  */
 
+/* SDMMC Responses management functions *****************************************/
+/** @addtogroup HAL_SDMMC_LL_Group5
+  * @{
+  */
+uint32_t SDMMC_GetCmdResp1(SDIO_TypeDef *SDIOx, uint8_t SD_CMD, uint32_t Timeout);
+uint32_t SDMMC_GetCmdResp2(SDIO_TypeDef *SDIOx);
+uint32_t SDMMC_GetCmdResp3(SDIO_TypeDef *SDIOx);
+uint32_t SDMMC_GetCmdResp6(SDIO_TypeDef *SDIOx, uint8_t SD_CMD, uint16_t *pRCA);
+uint32_t SDMMC_GetCmdResp7(SDIO_TypeDef *SDIOx);
 /**
   * @}
   */

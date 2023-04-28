@@ -9,7 +9,6 @@
   *           + IO operation functions
   *           + Peripheral Control functions
   *           + Peripheral State functions
-  *
   ******************************************************************************
   * @attention
   *
@@ -195,7 +194,6 @@
             (#) RX processes are HAL_SPI_Receive(), HAL_SPI_Receive_IT() and HAL_SPI_Receive_DMA()
             (#) TX processes are HAL_SPI_Transmit(), HAL_SPI_Transmit_IT() and HAL_SPI_Transmit_DMA()
 
-  ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -415,7 +413,7 @@ HAL_StatusTypeDef HAL_SPI_Init(SPI_HandleTypeDef *hspi)
 #else
   /* Configure : NSS management */
   WRITE_REG(hspi->Instance->CR2, ((hspi->Init.NSS >> 16U) & SPI_CR2_SSOE));
-#endif
+#endif /* SPI_CR2_FRF */
 
 #if (USE_SPI_CRC != 0U)
   /*---------------------------- SPIx CRCPOLY Configuration ------------------*/
@@ -2139,7 +2137,7 @@ HAL_StatusTypeDef HAL_SPI_Abort(SPI_HandleTypeDef *hspi)
   __HAL_SPI_CLEAR_OVRFLAG(hspi);
 #if defined(SPI_CR2_FRF)
   __HAL_SPI_CLEAR_FREFLAG(hspi);
-#endif
+#endif /* SPI_CR2_FRF */
 
   /* Restore hspi->state to ready */
   hspi->State = HAL_SPI_STATE_READY;
@@ -2303,7 +2301,7 @@ HAL_StatusTypeDef HAL_SPI_Abort_IT(SPI_HandleTypeDef *hspi)
     __HAL_SPI_CLEAR_OVRFLAG(hspi);
 #if defined(SPI_CR2_FRF)
     __HAL_SPI_CLEAR_FREFLAG(hspi);
-#endif
+#endif /* SPI_CR2_FRF */
 
     /* Restore hspi->State to Ready */
     hspi->State = HAL_SPI_STATE_READY;
@@ -2432,7 +2430,7 @@ void HAL_SPI_IRQHandler(SPI_HandleTypeDef *hspi)
 #else
   if (((SPI_CHECK_FLAG(itflag, SPI_FLAG_MODF) != RESET) || (SPI_CHECK_FLAG(itflag, SPI_FLAG_OVR) != RESET))
       && (SPI_CHECK_IT_SOURCE(itsource, SPI_IT_ERR) != RESET))
-#endif
+#endif /* SPI_CR2_FRF */
   {
     /* SPI Overrun error interrupt occurred ----------------------------------*/
     if (SPI_CHECK_FLAG(itflag, SPI_FLAG_OVR) != RESET)
@@ -2463,7 +2461,7 @@ void HAL_SPI_IRQHandler(SPI_HandleTypeDef *hspi)
       SET_BIT(hspi->ErrorCode, HAL_SPI_ERROR_FRE);
       __HAL_SPI_CLEAR_FREFLAG(hspi);
     }
-#endif
+#endif /* SPI_CR2_FRF */
 
     if (hspi->ErrorCode != HAL_SPI_ERROR_NONE)
     {
@@ -3076,7 +3074,7 @@ static void SPI_DMATxAbortCallback(DMA_HandleTypeDef *hdma)
   __HAL_SPI_CLEAR_OVRFLAG(hspi);
 #if defined(SPI_CR2_FRF)
   __HAL_SPI_CLEAR_FREFLAG(hspi);
-#endif
+#endif /* SPI_CR2_FRF */
 
   /* Restore hspi->State to Ready */
   hspi->State  = HAL_SPI_STATE_READY;
@@ -3139,7 +3137,7 @@ static void SPI_DMARxAbortCallback(DMA_HandleTypeDef *hdma)
   __HAL_SPI_CLEAR_OVRFLAG(hspi);
 #if defined(SPI_CR2_FRF)
   __HAL_SPI_CLEAR_FREFLAG(hspi);
-#endif
+#endif /* SPI_CR2_FRF */
 
   /* Restore hspi->State to Ready */
   hspi->State  = HAL_SPI_STATE_READY;
@@ -3195,7 +3193,7 @@ static void SPI_2linesRxISR_8BIT(struct __SPI_HandleTypeDef *hspi)
   */
 static void SPI_2linesRxISR_8BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
-  __IO uint8_t  * ptmpreg8;
+  __IO uint8_t  *ptmpreg8;
   __IO uint8_t  tmpreg8 = 0;
 
   /* Initialize the 8bit temporary pointer */
@@ -3298,7 +3296,7 @@ static void SPI_2linesRxISR_16BITCRC(struct __SPI_HandleTypeDef *hspi)
   /* Read 16bit CRC to flush Data Register */
   tmpreg = READ_REG(hspi->Instance->DR);
   /* To avoid GCC warning */
-  UNUSED(tmpreg);  
+  UNUSED(tmpreg);
 
   /* Disable RXNE interrupt */
   __HAL_SPI_DISABLE_IT(hspi, SPI_IT_RXNE);
@@ -3353,7 +3351,7 @@ static void SPI_2linesTxISR_16BIT(struct __SPI_HandleTypeDef *hspi)
   */
 static void SPI_RxISR_8BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
-  __IO uint8_t  * ptmpreg8;
+  __IO uint8_t  *ptmpreg8;
   __IO uint8_t  tmpreg8 = 0;
 
   /* Initialize the 8bit temporary pointer */
@@ -3565,7 +3563,7 @@ static HAL_StatusTypeDef SPI_WaitFlagStateUntilTimeout(SPI_HandleTypeDef *hspi, 
         return HAL_TIMEOUT;
       }
       /* If Systick is disabled or not incremented, deactivate timeout to go in disable loop procedure */
-      if(count == 0U)
+      if (count == 0U)
       {
         tmp_timeout = 0U;
       }
@@ -3953,3 +3951,4 @@ static void SPI_AbortTx_ISR(SPI_HandleTypeDef *hspi)
 /**
   * @}
   */
+

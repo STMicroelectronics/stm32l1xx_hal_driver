@@ -5,11 +5,10 @@
   * @brief   Extended OPAMP HAL module driver.
   *
   *          This file provides firmware functions to manage the following
-  *          functionalities of the operational amplifier(s)(OPAMP1, OPAMP2 etc)
-  *          peripheral:
+  *          functionalities of the operational amplifier(s) peripheral:
   *           + Extended Initialization and de-initialization functions
   *           + Extended Peripheral Control functions
-  *         
+  *
   ******************************************************************************
   * @attention
   *
@@ -72,7 +71,7 @@
 /**
   * @brief  Run the self calibration of the 3 OPAMPs in parallel.
   * @note   Trimming values (PMOS & NMOS) are updated and user trimming is 
-  *         enabled is calibration is succesful.
+  *         enabled is calibration is successful.
   * @note   Calibration is performed in the mode specified in OPAMP init
   *         structure (mode normal or low-power). To perform calibration for
   *         both modes, repeat this function twice after OPAMP init structure
@@ -436,7 +435,7 @@ HAL_StatusTypeDef HAL_OPAMPEx_SelfCalibrateAll(OPAMP_HandleTypeDef *hopamp1, OPA
 /**
   * @brief  Run the self calibration of the 2 OPAMPs in parallel.
   * @note   Trimming values (PMOS & NMOS) are updated and user trimming is 
-  *         enabled is calibration is succesful.
+  *         enabled is calibration is successful.
   * @note   Calibration is performed in the mode specified in OPAMP init
   *         structure (mode normal or low-power). To perform calibration for
   *         both modes, repeat this function twice after OPAMP init structure
@@ -795,3 +794,4 @@ HAL_StatusTypeDef HAL_OPAMPEx_Unlock(OPAMP_HandleTypeDef* hopamp)
 /**
   * @}
   */
+

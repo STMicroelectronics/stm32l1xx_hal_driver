@@ -5,14 +5,16 @@
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Analog to Digital Convertor (ADC)
   *          peripheral:
-  *           + Operation functions
-  *             ++ Start, stop, get result of conversions of injected
-  *                group, using 2 possible modes: polling, interruption.
-  *           + Control functions
-  *             ++ Channels configuration on injected group
+  *           + Peripheral Control functions
   *          Other functions (generic functions) are available in file 
   *          "stm32l1xx_hal_adc.c".
   *
+  @verbatim
+  [..] 
+  (@) Sections "ADC peripheral features" and "How to use this driver" are
+      available in file of generic functions "stm32l1xx_hal_adc.c".
+  [..]
+  @endverbatim
   ******************************************************************************
   * @attention
   *
@@ -23,13 +25,6 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
-  ******************************************************************************
-  @verbatim
-  [..] 
-  (@) Sections "ADC peripheral features" and "How to use this driver" are
-      available in file of generic functions "stm32l1xx_hal_adc.c".
-  [..]
-  @endverbatim
   ******************************************************************************
   */
 
@@ -598,7 +593,7 @@ __weak void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
   * @note   Possibility to update parameters on the fly:
   *         This function initializes injected group, following calls to this 
   *         function can be used to reconfigure some parameters of structure
-  *         "ADC_InjectionConfTypeDef" on the fly, without reseting the ADC.
+  *         "ADC_InjectionConfTypeDef" on the fly, without resetting the ADC.
   *         The setting of these parameters is conditioned to ADC state: 
   *         this function must be called when ADC is not under conversion.
   * @param  hadc ADC handle

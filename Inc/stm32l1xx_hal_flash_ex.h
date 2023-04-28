@@ -9,12 +9,11 @@
   * Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
   ******************************************************************************
-  */
+  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32L1xx_HAL_FLASH_EX_H
@@ -209,7 +208,7 @@ typedef struct
                              This parameter can be a value of @ref FLASHEx_Type_Erase */
 
   uint32_t PageAddress; /*!< PageAddress: Initial FLASH address to be erased
-                             This parameter must be a value belonging to FLASH Programm address (depending on the devices)  */
+                             This parameter must be a value belonging to FLASH Program address (depending on the devices)  */
   
   uint32_t NbPages;     /*!< NbPages: Number of pages to be erased.
                              This parameter must be a value between 1 and (max number of pages - value of Initial page)*/
@@ -963,3 +962,4 @@ void              HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram(void);
 #endif
 
 #endif /* __STM32L1xx_HAL_FLASH_EX_H */
+

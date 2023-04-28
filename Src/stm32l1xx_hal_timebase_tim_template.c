@@ -6,7 +6,7 @@
   *    
   *          This file override the native HAL time base functions (defined as weak)
   *          the TIM time base:
-  *           + Intializes the TIM peripheral to generate a Period elapsed Event each 1ms
+  *           + Initializes the TIM peripheral to generate a Period elapsed Event each 1ms
   *           + HAL_IncTick is called inside HAL_TIM_PeriodElapsedCallback ie each 1ms
   * 
   ******************************************************************************
@@ -20,7 +20,7 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  @verbatim
+ @verbatim
   ==============================================================================
                         ##### How to use this driver #####
   ==============================================================================
@@ -191,3 +191,5 @@ void TIM6_IRQHandler(void)
 /**
   * @}
   */
+
+

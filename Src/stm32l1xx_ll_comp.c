@@ -53,7 +53,7 @@
    || ((__POWER_MODE__) == LL_COMP_POWERMODE_ULTRALOWPOWER)                    \
   )
 
-/* Note: On this STM32 serie, comparator input plus parameters are            */
+/* Note: On this STM32 series, comparator input plus parameters are            */
 /*       the different depending on COMP instances.                           */
 #if defined(RI_ASCR1_CH_31)
 #define IS_LL_COMP_INPUT_PLUS(__COMP_INSTANCE__, __INPUT_PLUS__)               \
@@ -136,7 +136,7 @@
   )
 #endif
 
-/* Note: On this STM32 serie, comparator input minus parameters are           */
+/* Note: On this STM32 series, comparator input minus parameters are           */
 /*       the different depending on COMP instances.                           */
 #define IS_LL_COMP_INPUT_MINUS(__COMP_INSTANCE__, __INPUT_MINUS__)             \
   (((__COMP_INSTANCE__) == COMP1)                                              \
@@ -200,10 +200,10 @@ ErrorStatus LL_COMP_DeInit(COMP_TypeDef *COMPx)
   /* Check the parameters */
   assert_param(IS_COMP_ALL_INSTANCE(COMPx));
   
-    /* Note: On this STM32 serie, only COMP instance COMP2 has                */
+    /* Note: On this STM32 series, only COMP instance COMP2 has                */
     /*       features settables: power mode, input minus selection            */
     /*       and output selection.                                            */
-    /* Note: On this STM32 serie, setting COMP instance COMP2 input minus     */
+    /* Note: On this STM32 series, setting COMP instance COMP2 input minus     */
     /*       is enabling the comparator.                                      */
     /*       Reset COMP2 input minus also disable the comparator.             */
     /* Note: In case of de-initialization of COMP instance COMP1:             */
@@ -269,10 +269,10 @@ ErrorStatus LL_COMP_Init(COMP_TypeDef *COMPx, LL_COMP_InitTypeDef *COMP_InitStru
   /*  - InputPlus                                                           */
   /*  - InputMinus                                                          */
   /*  - OutputSelection                                                     */
-  /* Note: On this STM32 serie, only COMP instance COMP2 has                */
+  /* Note: On this STM32 series, only COMP instance COMP2 has                */
   /*       features settables: power mode, input minus selection            */
   /*       and output selection.                                            */
-  /* Note: On this STM32 serie, setting COMP instance COMP2 input minus     */
+  /* Note: On this STM32 series, setting COMP instance COMP2 input minus     */
   /*       is enabling the comparator.                                      */
   if(COMPx == COMP2)
   {
@@ -337,3 +337,4 @@ void LL_COMP_StructInit(LL_COMP_InitTypeDef *COMP_InitStruct)
   */
 
 #endif /* USE_FULL_LL_DRIVER */
+

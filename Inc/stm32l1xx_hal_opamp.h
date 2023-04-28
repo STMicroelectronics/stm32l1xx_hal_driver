@@ -551,3 +551,4 @@ HAL_OPAMP_StateTypeDef HAL_OPAMP_GetState(OPAMP_HandleTypeDef *hopamp);
 #endif
 
 #endif /* STM32L1xx_HAL_OPAMP_H */
+

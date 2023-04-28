@@ -313,3 +313,4 @@
 #endif
 
 #endif /* __STM32L1xx_HAL_COMP_EX_H */
+

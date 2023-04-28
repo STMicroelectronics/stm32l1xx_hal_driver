@@ -157,7 +157,7 @@ typedef struct
 #define LL_SPI_PROTOCOL_MOTOROLA           0x00000000U               /*!< Motorola mode. Used as default value */
 #if defined(SPI_CR2_FRF)
 #define LL_SPI_PROTOCOL_TI                 (SPI_CR2_FRF)             /*!< TI mode                              */
-#endif
+#endif /* SPI_CR2_FRF */
 /**
   * @}
   */
@@ -383,7 +383,7 @@ __STATIC_INLINE uint32_t LL_SPI_GetStandard(SPI_TypeDef *SPIx)
 {
   return (uint32_t)(READ_BIT(SPIx->CR2, SPI_CR2_FRF));
 }
-#endif
+#endif /* SPI_CR2_FRF */
 
 /**
   * @brief  Set clock phase
@@ -811,7 +811,7 @@ __STATIC_INLINE uint32_t LL_SPI_IsActiveFlag_FRE(SPI_TypeDef *SPIx)
 {
   return ((READ_BIT(SPIx->SR, SPI_SR_FRE) == (SPI_SR_FRE)) ? 1UL : 0UL);
 }
-#endif
+#endif /* SPI_CR2_FRF */
 
 /**
   * @brief  Clear CRC error flag
@@ -1693,7 +1693,7 @@ __STATIC_INLINE uint32_t LL_I2S_IsActiveFlag_FRE(SPI_TypeDef *SPIx)
 {
   return LL_SPI_IsActiveFlag_FRE(SPIx);
 }
-#endif
+#endif /* SPI_CR2_FRF */
 
 /**
   * @brief  Get channel side flag.
@@ -1997,3 +1997,4 @@ void        LL_I2S_ConfigPrescaler(SPI_TypeDef *SPIx, uint32_t PrescalerLinear, 
 #endif
 
 #endif /* STM32L1xx_LL_SPI_H */
+

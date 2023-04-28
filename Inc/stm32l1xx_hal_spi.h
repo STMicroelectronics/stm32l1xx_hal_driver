@@ -287,7 +287,7 @@ typedef  void (*pSPI_CallbackTypeDef)(SPI_HandleTypeDef *hspi); /*!< pointer to 
 #define SPI_TIMODE_DISABLE              (0x00000000U)
 #if defined(SPI_CR2_FRF)
 #define SPI_TIMODE_ENABLE               SPI_CR2_FRF
-#endif
+#endif /* SPI_CR2_FRF */
 /**
   * @}
   */
@@ -627,7 +627,7 @@ typedef  void (*pSPI_CallbackTypeDef)(SPI_HandleTypeDef *hspi); /*!< pointer to 
   */
 #define IS_SPI_TIMODE(__MODE__) ((__MODE__) == SPI_TIMODE_DISABLE)
 
-#endif
+#endif /* SPI_I2SCFGR_I2SMOD */
 /** @brief  Checks if SPI CRC calculation enabled state is in allowed range.
   * @param  __CALCULATION__ specifies the SPI CRC calculation enable state.
   *         This parameter can be a value of @ref SPI_CRC_Calculation
@@ -671,7 +671,8 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi);
 
 /* Callbacks Register/UnRegister functions  ***********************************/
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
-HAL_StatusTypeDef HAL_SPI_RegisterCallback(SPI_HandleTypeDef *hspi, HAL_SPI_CallbackIDTypeDef CallbackID, pSPI_CallbackTypeDef pCallback);
+HAL_StatusTypeDef HAL_SPI_RegisterCallback(SPI_HandleTypeDef *hspi, HAL_SPI_CallbackIDTypeDef CallbackID,
+                                           pSPI_CallbackTypeDef pCallback);
 HAL_StatusTypeDef HAL_SPI_UnRegisterCallback(SPI_HandleTypeDef *hspi, HAL_SPI_CallbackIDTypeDef CallbackID);
 #endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
 /**
@@ -741,3 +742,4 @@ uint32_t             HAL_SPI_GetError(SPI_HandleTypeDef *hspi);
 #endif
 
 #endif /* STM32L1xx_HAL_SPI_H */
+

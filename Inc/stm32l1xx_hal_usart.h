@@ -624,7 +624,7 @@ uint32_t               HAL_USART_GetError(const USART_HandleTypeDef *husart);
   */
 
 /* Private functions ---------------------------------------------------------*/
-/** @defgroup USART_Private_Functions USART Private Functions
+/** @addtogroup USART_Private_Functions
   * @{
   */
 
@@ -645,3 +645,4 @@ uint32_t               HAL_USART_GetError(const USART_HandleTypeDef *husart);
 #endif
 
 #endif /* __STM32L1xx_HAL_USART_H */
+

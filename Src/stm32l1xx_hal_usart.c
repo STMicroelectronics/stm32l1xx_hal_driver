@@ -423,6 +423,8 @@ __weak void HAL_USART_MspDeInit(USART_HandleTypeDef *husart)
 /**
   * @brief  Register a User USART Callback
   *         To be used instead of the weak predefined callback
+  * @note   The HAL_USART_RegisterCallback() may be called before HAL_USART_Init() in HAL_USART_STATE_RESET
+  *         to register callbacks for HAL_USART_MSPINIT_CB_ID and HAL_USART_MSPDEINIT_CB_ID
   * @param  husart usart handle
   * @param  CallbackID ID of the callback to be registered
   *         This parameter can be one of the following values:
@@ -450,8 +452,6 @@ HAL_StatusTypeDef HAL_USART_RegisterCallback(USART_HandleTypeDef *husart, HAL_US
 
     return HAL_ERROR;
   }
-  /* Process locked */
-  __HAL_LOCK(husart);
 
   if (husart->State == HAL_USART_STATE_READY)
   {
@@ -532,15 +532,14 @@ HAL_StatusTypeDef HAL_USART_RegisterCallback(USART_HandleTypeDef *husart, HAL_US
     status =  HAL_ERROR;
   }
 
-  /* Release Lock */
-  __HAL_UNLOCK(husart);
-
   return status;
 }
 
 /**
   * @brief  Unregister an USART Callback
   *         USART callaback is redirected to the weak predefined callback
+  * @note   The HAL_USART_UnRegisterCallback() may be called before HAL_USART_Init() in HAL_USART_STATE_RESET
+  *         to un-register callbacks for HAL_USART_MSPINIT_CB_ID and HAL_USART_MSPDEINIT_CB_ID
   * @param  husart usart handle
   * @param  CallbackID ID of the callback to be unregistered
   *         This parameter can be one of the following values:
@@ -558,9 +557,6 @@ HAL_StatusTypeDef HAL_USART_RegisterCallback(USART_HandleTypeDef *husart, HAL_US
 HAL_StatusTypeDef HAL_USART_UnRegisterCallback(USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID)
 {
   HAL_StatusTypeDef status = HAL_OK;
-
-  /* Process locked */
-  __HAL_LOCK(husart);
 
   if (husart->State == HAL_USART_STATE_READY)
   {
@@ -640,9 +636,6 @@ HAL_StatusTypeDef HAL_USART_UnRegisterCallback(USART_HandleTypeDef *husart, HAL_
     /* Return error status */
     status =  HAL_ERROR;
   }
-
-  /* Release Lock */
-  __HAL_UNLOCK(husart);
 
   return status;
 }
@@ -1147,8 +1140,16 @@ HAL_StatusTypeDef HAL_USART_Receive_IT(USART_HandleTypeDef *husart, uint8_t *pRx
     /* Process Unlocked */
     __HAL_UNLOCK(husart);
 
-    /* Enable the USART Parity Error and Data Register not empty Interrupts */
-    SET_BIT(husart->Instance->CR1, USART_CR1_PEIE | USART_CR1_RXNEIE);
+    if (husart->Init.Parity != USART_PARITY_NONE)
+    {
+      /* Enable the USART Parity Error and Data Register not empty Interrupts */
+      SET_BIT(husart->Instance->CR1, USART_CR1_PEIE | USART_CR1_RXNEIE);
+    }
+    else
+    {
+      /* Enable the USART Data Register not empty Interrupts */
+      SET_BIT(husart->Instance->CR1, USART_CR1_RXNEIE);
+    }
 
     /* Enable the USART Error Interrupt: (Frame error, noise error, overrun error) */
     SET_BIT(husart->Instance->CR3, USART_CR3_EIE);
@@ -1204,8 +1205,11 @@ HAL_StatusTypeDef HAL_USART_TransmitReceive_IT(USART_HandleTypeDef *husart, cons
     /* Enable the USART Data Register not empty Interrupt */
     SET_BIT(husart->Instance->CR1, USART_CR1_RXNEIE);
 
-    /* Enable the USART Parity Error Interrupt */
-    SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    if (husart->Init.Parity != USART_PARITY_NONE)
+    {
+      /* Enable the USART Parity Error Interrupt */
+      SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    }
 
     /* Enable the USART Error Interrupt: (Frame error, noise error, overrun error) */
     SET_BIT(husart->Instance->CR3, USART_CR3_EIE);
@@ -1359,8 +1363,11 @@ HAL_StatusTypeDef HAL_USART_Receive_DMA(USART_HandleTypeDef *husart, uint8_t *pR
     /* Process Unlocked */
     __HAL_UNLOCK(husart);
 
-    /* Enable the USART Parity Error Interrupt */
-    SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    if (husart->Init.Parity != USART_PARITY_NONE)
+    {
+      /* Enable the USART Parity Error Interrupt */
+      SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    }
 
     /* Enable the USART Error Interrupt: (Frame error, noise error, overrun error) */
     SET_BIT(husart->Instance->CR3, USART_CR3_EIE);
@@ -1454,8 +1461,11 @@ HAL_StatusTypeDef HAL_USART_TransmitReceive_DMA(USART_HandleTypeDef *husart, con
     /* Process Unlocked */
     __HAL_UNLOCK(husart);
 
-    /* Enable the USART Parity Error Interrupt */
-    SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    if (husart->Init.Parity != USART_PARITY_NONE)
+    {
+      /* Enable the USART Parity Error Interrupt */
+      SET_BIT(husart->Instance->CR1, USART_CR1_PEIE);
+    }
 
     /* Enable the USART Error Interrupt: (Frame error, noise error, overrun error) */
     SET_BIT(husart->Instance->CR3, USART_CR3_EIE);
@@ -2070,6 +2080,9 @@ uint32_t HAL_USART_GetError(const USART_HandleTypeDef *husart)
   return husart->ErrorCode;
 }
 
+/**
+  * @}
+  */
 /**
   * @}
   */
@@ -2788,10 +2801,6 @@ static void USART_SetConfig(USART_HandleTypeDef *husart)
   * @}
   */
 
-/**
-  * @}
-  */
-
 #endif /* HAL_USART_MODULE_ENABLED */
 /**
   * @}
@@ -2800,3 +2809,4 @@ static void USART_SetConfig(USART_HandleTypeDef *husart)
 /**
   * @}
   */
+
