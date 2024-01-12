@@ -5510,7 +5510,9 @@ static void I2C_MasterReceive_RXNE(I2C_HandleTypeDef *hi2c)
   if (hi2c->State == HAL_I2C_STATE_BUSY_RX)
   {
     uint32_t tmp;
+    uint32_t CurrentXferOptions;
 
+    CurrentXferOptions = hi2c->XferOptions;
     tmp = hi2c->XferCount;
     if (tmp > 3U)
     {
@@ -5566,7 +5568,14 @@ static void I2C_MasterReceive_RXNE(I2C_HandleTypeDef *hi2c)
         else
         {
           hi2c->Mode = HAL_I2C_MODE_NONE;
-          hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+          if ((CurrentXferOptions == I2C_FIRST_AND_LAST_FRAME) || (CurrentXferOptions == I2C_LAST_FRAME))
+          {
+            hi2c->PreviousState = I2C_STATE_NONE;
+          }
+          else
+          {
+            hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+          }
 
 #if (USE_HAL_I2C_REGISTER_CALLBACKS == 1)
           hi2c->MasterRxCpltCallback(hi2c);
@@ -5714,7 +5723,14 @@ static void I2C_MasterReceive_BTF(I2C_HandleTypeDef *hi2c)
     else
     {
       hi2c->Mode = HAL_I2C_MODE_NONE;
-      hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+      if ((CurrentXferOptions == I2C_FIRST_AND_LAST_FRAME) || (CurrentXferOptions == I2C_LAST_FRAME))
+      {
+        hi2c->PreviousState = I2C_STATE_NONE;
+      }
+      else
+      {
+        hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+      }
 #if (USE_HAL_I2C_REGISTER_CALLBACKS == 1)
       hi2c->MasterRxCpltCallback(hi2c);
 #else
@@ -7022,7 +7038,14 @@ static void I2C_DMAXferCplt(DMA_HandleTypeDef *hdma)
       else
       {
         hi2c->Mode = HAL_I2C_MODE_NONE;
-        hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+        if ((CurrentXferOptions == I2C_FIRST_AND_LAST_FRAME) || (CurrentXferOptions == I2C_LAST_FRAME))
+        {
+          hi2c->PreviousState = I2C_STATE_NONE;
+        }
+        else
+        {
+          hi2c->PreviousState = I2C_STATE_MASTER_BUSY_RX;
+        }
 
 #if (USE_HAL_I2C_REGISTER_CALLBACKS == 1)
         hi2c->MasterRxCpltCallback(hi2c);
